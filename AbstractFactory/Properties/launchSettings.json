@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AbstractFactory": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
