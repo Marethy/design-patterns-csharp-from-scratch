@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Builder", "Builder\Builder.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prototype", "Prototype\Prototype.csproj", "{66C295A6-50AA-40C8-A95E-35F5D399CC42}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StructuralPattern", "StructuralPattern", "{D3D64526-2F9D-4575-8F05-8360CA2E8764}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterPattern", "AdapterPattern\AdapterPattern.csproj", "{849AF327-8345-47E0-B39B-A1115354B996}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,10 @@ Global
 		{66C295A6-50AA-40C8-A95E-35F5D399CC42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66C295A6-50AA-40C8-A95E-35F5D399CC42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66C295A6-50AA-40C8-A95E-35F5D399CC42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{849AF327-8345-47E0-B39B-A1115354B996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{849AF327-8345-47E0-B39B-A1115354B996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{849AF327-8345-47E0-B39B-A1115354B996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{849AF327-8345-47E0-B39B-A1115354B996}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +52,7 @@ Global
 		{03D60196-DEC3-4707-96C1-3FE8642254CC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{B417F862-FBC4-46E0-B0CF-6A574843D539} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{66C295A6-50AA-40C8-A95E-35F5D399CC42} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{849AF327-8345-47E0-B39B-A1115354B996} = {D3D64526-2F9D-4575-8F05-8360CA2E8764}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6376E550-DE7F-4B51-844F-5D094F5051BA}
