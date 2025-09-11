@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Adapter
+namespace DecoratorPattern.Domain
 {
-    public interface IPaymentProcessor
+    public interface ICoffee
     {
-        void Pay(decimal amount);
+        string GetDescription();
+        decimal GetCost();
     }
 }

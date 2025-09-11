@@ -8,6 +8,6 @@ namespace Prototype
 {
     public interface IProductPrototype
     {
-        IProductPrototype Clone();
+        IProductPrototype Clone();  
     }
 }
