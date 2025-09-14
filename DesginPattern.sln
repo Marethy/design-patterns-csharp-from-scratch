@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Iterator", "Iterator\Iterat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateMethod", "TemplateMethod\TemplateMethod.csproj", "{1F402F31-F539-494C-BF7F-38A2FB1DA270}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visitor", "Visitor\Visitor.csproj", "{5D7130D9-92E7-4BBF-B325-4CA400F59019}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{1F402F31-F539-494C-BF7F-38A2FB1DA270}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F402F31-F539-494C-BF7F-38A2FB1DA270}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F402F31-F539-494C-BF7F-38A2FB1DA270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D7130D9-92E7-4BBF-B325-4CA400F59019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D7130D9-92E7-4BBF-B325-4CA400F59019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D7130D9-92E7-4BBF-B325-4CA400F59019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D7130D9-92E7-4BBF-B325-4CA400F59019}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,6 +138,7 @@ Global
 		{8DB63883-AE7F-4C20-9D81-98A39428957C} = {4E5991E7-CFAE-4E88-940F-AD7729A621FB}
 		{BA86A57D-BC9B-4B1B-8AD2-6412B00A2C76} = {4E5991E7-CFAE-4E88-940F-AD7729A621FB}
 		{1F402F31-F539-494C-BF7F-38A2FB1DA270} = {4E5991E7-CFAE-4E88-940F-AD7729A621FB}
+		{5D7130D9-92E7-4BBF-B325-4CA400F59019} = {4E5991E7-CFAE-4E88-940F-AD7729A621FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6376E550-DE7F-4B51-844F-5D094F5051BA}
