@@ -1,26 +1,26 @@
-﻿using FactoryMethod.Domain;
-using FactoryMethod.Factory;
+﻿using FactoryMethod;
 
-Console.WriteLine("Select Payment Method: 1 = CreditCard, 2 = PayPal, 3 = BankTransfer");
-string choice = Console.ReadLine();
+Console.WriteLine("Factory Method Pattern Demo: Logistics Management\n");
 
-PaymentFactory factory;
+// Client code does not depend on concrete classes (Truck/Ship/Plane).
+// It only interacts with factories and the ITransport interface.
 
-switch (choice)
-{ 
-    case "1":
-        factory = new CreditCardPaymentFactory();
-        break;
-    case "2":
-        factory = new PayPalPaymentFactory();
-        break;
-    case "3":
-        factory = new BankTransferPaymentFactory();
-        break;
-    default:
-        throw new Exception("Invalid payment method");
-}
+// Example: Road logistics
+LogisticsFactory roadFactory = new RoadLogistics();
+ITransport roadTransport = roadFactory.CreateTransport();
+roadTransport.Deliver();
 
-// Use Factory Method
-IPayment payment = factory.CreatePayment();
-payment.ProcessPayment(250.00m); // Pay $250
+// Example: Sea logistics
+LogisticsFactory seaFactory = new SeaLogistics();
+ITransport seaTransport = seaFactory.CreateTransport();
+seaTransport.Deliver();
+
+// Example: Air logistics
+LogisticsFactory airFactory = new AirLogistics();
+ITransport airTransport = airFactory.CreateTransport();
+airTransport.Deliver();
+
+// ✅ Benefit:
+// Adding a new transport type only requires creating a new
+// concrete transport class and a corresponding factory class.
+// The existing client code remains unchanged (Open/Closed Principle).

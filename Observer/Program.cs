@@ -1,5 +1,4 @@
-﻿var subscribers = new List<ISubscriber>();
-var socialMedia = new SocialMedia();
+﻿var socialMedia = new SocialMedia();
 var user1 = new User("Alice");
 var user2 = new User("Bob");
 socialMedia.Subscribe(user1);
