@@ -1,20 +1,34 @@
-﻿using Builder.Builder;
-using Builder;
+﻿using Builder;
 
-IOrderBuilder builder =  new OrderBuilder(new Order());
+var builder = new HouseBuilder();
 
-builder.SetPaymentMethod("Cash on Delivery")
-       .SetCustomer("Nguyen Van A")
-       .SetShippingAddress("456 Nguyen Trai, HCMC")
-       .AddItem("Phone", 800.00m)
-       .AddItem("Headphones", 150.00m);
+// Create a director
+var director = new Director(builder);
 
-Order order = builder
-    .SetCustomer("Tran Khiem")
-    .SetShippingAddress("123 Le Loi, HCMC")
-    .SetPaymentMethod("Credit Card")
-    .AddItem("Laptop", 1200.00m)
-    .AddItem("Mouse", 25.50m)
+// Build a simple house
+House simpleHouse = director.ConstructSimpleHouse();
+Console.WriteLine("Simple House:");
+Console.WriteLine(simpleHouse);
+Console.WriteLine();
+
+// Build a luxury house
+House luxuryHouse = director.ConstructLuxuryHouse();
+Console.WriteLine("Luxury House:");
+Console.WriteLine(luxuryHouse);
+Console.WriteLine();
+
+// Custom house using builder directly (method chaining)
+House customHouse = builder
+    .WithWalls(6)
+    .WithWindows(8)
+    .WithDoors(2)
+    .AddRoof()
+    .AddGarage()
+    .AddSwimmingPool()
+    .AddPlumbing()
+    .AddHeatingSystem()
+    .AddElectricalWiring()
     .Build();
 
-Console.WriteLine(order);
+Console.WriteLine("Custom House:");
+Console.WriteLine(customHouse);

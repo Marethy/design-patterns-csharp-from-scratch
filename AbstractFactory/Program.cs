@@ -1,13 +1,36 @@
-﻿using AbstractFactory.Factory;
-using AbstractFactory.Service;
+﻿using System;
+using AbstractFactory;
 
-IPaymentFactory factory = new PaypalFactory();
-var orderService = new OrderService(factory);
-orderService.Checkout("ORD123", 199.99m);
+// ================================================================
+// Program.cs
+// Demo of Abstract Factory Pattern (top-level statements style)
+// ================================================================
 
-Console.WriteLine();
+// Create factories
+var modernFactory = new ModernFurnitureFactory();
+var victorianFactory = new VictorianFurnitureFactory();
+var artDecoFactory = new ArtDecoFurnitureFactory();
 
-// Customer selects MoMo
-factory = new MoMoFactory();
-orderService = new OrderService(factory);
-orderService.Checkout("ORD124", 350.50m);
+Console.WriteLine("=== Modern Furniture Set ===");
+var modernChair = modernFactory.CreateChair();
+var modernSofa = modernFactory.CreateSofa();
+var modernTable = modernFactory.CreateCoffeeTable();
+modernChair.SitOn();
+modernSofa.LieOn();
+modernTable.PlaceItems();
+
+Console.WriteLine("\n=== Victorian Furniture Set ===");
+var victorianChair = victorianFactory.CreateChair();
+var victorianSofa = victorianFactory.CreateSofa();
+var victorianTable = victorianFactory.CreateCoffeeTable();
+victorianChair.SitOn();
+victorianSofa.LieOn();
+victorianTable.PlaceItems();
+
+Console.WriteLine("\n=== Art Deco Furniture Set ===");
+var artDecoChair = artDecoFactory.CreateChair();
+var artDecoSofa = artDecoFactory.CreateSofa();
+var artDecoTable = artDecoFactory.CreateCoffeeTable();
+artDecoChair.SitOn();
+artDecoSofa.LieOn();
+artDecoTable.PlaceItems();
