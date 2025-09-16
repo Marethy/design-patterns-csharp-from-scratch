@@ -1,5 +1,7 @@
 ﻿using Adapter;
-using AdapterPattern.Adapter;
-IPaymentProcessor processor = new PayPalAdapter(new PayPalService());
 
-processor.Pay(150.75m); 
+var smsService = new SmsAdapter(new SmsService());
+smsService.SendMessage("Hello via SMS!");
+var emailAdapter = new EmailAdapter(new EmailService());
+emailAdapter.SendMessage("Hello via Email!");
+

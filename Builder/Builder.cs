@@ -31,10 +31,6 @@ public class House
         bool hasHeatingSystem,
         bool hasElectricalWiring)
     {
-        // Basic validation to prevent invalid houses
-        if (walls <= 0) throw new ArgumentException("House must have at least 1 wall");
-        if (doors <= 0) throw new ArgumentException("House must have at least 1 door");
-        if (windows < 0) throw new ArgumentException("Number of windows cannot be negative");
 
         Walls = walls;
         Windows = windows;
@@ -155,11 +151,9 @@ public class HouseBuilder : IHouseBuilder
 // =========================
 // Encapsulates standard ways to build a house
 // Client can use Director to construct common house types
-public class Director
+public class Director(IHouseBuilder builder)
 {
-    private readonly IHouseBuilder _builder;
-
-    public Director(IHouseBuilder builder) => _builder = builder;
+    private readonly IHouseBuilder _builder = builder;
 
     // Construct a simple house
     public House ConstructSimpleHouse()

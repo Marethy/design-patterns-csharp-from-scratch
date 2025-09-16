@@ -1,16 +1,25 @@
-﻿using Prototype;
+﻿// Create original object
+using Prototype;
 
-Product laptop = new Product("Gaming Laptop", 1500m, "Electronics");
+var original = new Laptop("Dell", "XPS 15", 16, 512);
 
-// Clone từ prototype
-Product laptopStudent = (Product)laptop.Clone();
-laptopStudent.Name = "Student Laptop";  
-laptopStudent.Price = 1200m;
+// List to hold clones
+var laptops = new List<Laptop>();
 
-Product laptopPremium = (Product)laptop.Clone();
-laptopPremium.Name = "Premium Laptop";
-laptopPremium.Price = 2000m;
+// Create 100 clones
+for (int i = 1; i <= 100; i++)
+{
+    var clone = original.Clone();
+    clone.Model = $"XPS {15 + i}";   // customize each clone a bit
+    clone.RAM = 8 + i;               // vary RAM for demo
+    laptops.Add(clone);
+}
 
-Console.WriteLine(laptop);
-Console.WriteLine(laptopStudent);
-Console.WriteLine(laptopPremium);
+// Print first 5 to check
+for (int i = 0; i < 5; i++)
+{
+    Console.WriteLine(laptops[i]);
+}
+
+Console.WriteLine($"\nTotal laptops created: {laptops.Count}");
+        
