@@ -1,28 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using Visitor;
+﻿using Visitor;
 
-// Danh sách các shape
-List<IShape> shapes = new()
-        {
-            new Circle(3),
-            new Rectangle(3, 4),
-            new Triangle( 5, 2)
-        };
+var products = new List<IElement>
+{
+    new Book("C# in Depth", 50),
+    new Electronics("Laptop", 1000),
+    new Clothing("Nike T-Shirt", 30)
+};
 
-// Tạo các Visitor
-var areaVisitor = new AreaVisitor();
-var drawVisitor = new DrawVisitor();
-var exportVisitor = new ExportVisitor();
+var taxVisitor = new TaxVisitor(0.1m); // 10%
+foreach (var product in products)
+    product.Accept(taxVisitor);
 
-Console.WriteLine("== Areas ==");
-foreach (var shape in shapes)
-    Console.WriteLine(shape.Accept(areaVisitor));
-
-Console.WriteLine("\n== Drawing ==");
-foreach (var shape in shapes)
-    Console.WriteLine(shape.Accept(drawVisitor));
-
-Console.WriteLine("\n== Export to SVG ==");
-foreach (var shape in shapes)
-    Console.WriteLine(shape.Accept(exportVisitor));
+Console.WriteLine($"Total Tax: {taxVisitor.TotalTax}");

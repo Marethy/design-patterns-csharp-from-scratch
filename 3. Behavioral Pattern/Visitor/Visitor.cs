@@ -1,92 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Visitor
+﻿namespace Visitor;
+public interface IVisitor
 {
-    // Interface cho tất cả Visitor
-    public interface IVisitor<T>
+    void Visit(Book book);
+    void Visit(Electronics electronics);
+    void Visit(Clothing clothing);
+}
+public interface IElement
+{
+    void Accept(IVisitor visitor);
+}
+public class Book(string title, decimal price) : IElement
+{
+    public string Title { get; } = title;
+    public decimal Price { get; } = price;
+
+    public void Accept(IVisitor visitor) => visitor.Visit(this);
+}
+public class Electronics(string name, decimal price) : IElement
+{
+    public string Name { get; } = name;
+    public decimal Price { get; } = price;
+    public void Accept(IVisitor visitor) => visitor.Visit(this);
+}
+public class Clothing(string brand, decimal price) : IElement
+{
+    public string Brand { get; } = brand;
+    public decimal Price { get; } = price;
+    public void Accept(IVisitor visitor) => visitor.Visit(this);
+}
+//Concrete Visitor
+public class TaxVisitor(decimal taxRate) : IVisitor
+{
+    public decimal TotalTax { get; private set; } = 0;
+    public void Visit(Book book)
     {
-        T Visit(Circle circle);
-        T Visit(Rectangle rectangle);
-        T Visit(Triangle triangle);
+        var tax = book.Price * taxRate * 0.5m; 
+        TotalTax += tax;
+        Console.WriteLine($"Book: {book.Title}, Price: {book.Price}, Tax: {tax}");
     }
-
-    // Visitor tính diện tích
-    public class AreaVisitor : IVisitor<double>
+    public void Visit(Electronics electronics)
     {
-        public double Visit(Circle circle) => Math.PI * circle.Radius * circle.Radius;
-        public double Visit(Rectangle rectangle) => rectangle.Width * rectangle.Height;
-        public double Visit(Triangle triangle) => 0.5 * triangle.Base * triangle.Height;
+        var tax = electronics.Price * taxRate;
+        TotalTax += tax;
+        Console.WriteLine($"Electronics: {electronics.Name}, Price: {electronics.Price}, Tax: {tax}");
     }
-
-    // Visitor vẽ
-    public class DrawVisitor : IVisitor<string>
+    public void Visit (Clothing clothing)
     {
-        public string Visit(Circle circle) => $"Drawing a Circle with radius {circle.Radius}";
-        public string Visit(Rectangle rectangle) => $"Drawing a Rectangle with width {rectangle.Width} and height {rectangle.Height}";
-        public string Visit(Triangle triangle) => $"Drawing a Triangle with base {triangle.Base} and height {triangle.Height}";
+        var tax = clothing.Price * taxRate * 0.8m; 
+        TotalTax += tax;
+        Console.WriteLine($"Clothing: {clothing.Brand}, Price: {clothing.Price}, Tax: {tax}");
     }
-
-    // Visitor export
-    public class ExportVisitor : IVisitor<string>
+}
+public class DiscountVisitor(decimal discountRate) : IVisitor
+{
+    public decimal TotalDiscount { get; private set; } = 0;
+    public void Visit(Book book)
     {
-        public string Visit(Circle circle) => $"<circle radius='{circle.Radius}' />";
-        public string Visit(Rectangle rectangle) => $"<rectangle width='{rectangle.Width}' height='{rectangle.Height}' />";
-        public string Visit(Triangle triangle) => $"<triangle base='{triangle.Base}' height='{triangle.Height}' />";
+        var discount = book.Price * discountRate * 0.1m; 
+        TotalDiscount += discount;
+        Console.WriteLine($"Book: {book.Title}, Price: {book.Price}, Discount: {discount}");
     }
-
-    // Interface cho Shape
-    public interface IShape
+    public void Visit(Electronics electronics)
     {
-        T Accept<T>(IVisitor<T> visitor);
+        var discount = electronics.Price * discountRate * 0.2m; 
+        TotalDiscount += discount;
+        Console.WriteLine($"Electronics: {electronics.Name}, Price: {electronics.Price}, Discount: {discount}");
     }
-
-    // Circle
-    public class Circle : IShape
+    public void Visit(Clothing clothing)
     {
-        public double Radius { get; }
-
-        public Circle(double radius)
-        {
-            if (radius <= 0)
-                throw new ArgumentException("Radius must be positive");
-            Radius = radius;
-        }
-
-        public T Accept<T>(IVisitor<T> visitor) => visitor.Visit(this);
-    }
-
-    // Rectangle
-    public class Rectangle : IShape
-    {
-        public double Width { get; }
-        public double Height { get; }
-
-        public Rectangle(double width, double height)
-        {
-            if (width <= 0 || height <= 0)
-                throw new ArgumentException("Width and Height must be positive");
-            Width = width;
-            Height = height;
-        }
-
-        public T Accept<T>(IVisitor<T> visitor) => visitor.Visit(this);
-    }
-
-    // Triangle
-    public class Triangle : IShape
-    {
-        public double Base { get; }
-        public double Height { get; }
-
-        public Triangle(double b, double h)
-        {
-            if (b <= 0 || h <= 0)
-                throw new ArgumentException("Base and Height must be positive");
-            Base = b;
-            Height = h;
-        }
-
-        public T Accept<T>(IVisitor<T> visitor) => visitor.Visit(this);
+        var discount = clothing.Price * discountRate * 0.15m; 
+        TotalDiscount += discount;
+        Console.WriteLine($"Clothing: {clothing.Brand}, Price: {clothing.Price}, Discount: {discount}");
     }
 }

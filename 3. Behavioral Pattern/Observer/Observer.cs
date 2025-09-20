@@ -1,50 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿namespace Observer;
 public interface IPublisher
 {
+    string Name { get; }
+    void Publish(string content);
     void Subscribe(ISubscriber subscriber);
     void Unsubscribe(ISubscriber subscriber);
-    void Notify(string message);
+}
+
+public class Publisher(string name) : IPublisher
+{
+    private readonly List<ISubscriber> _subscribers = [];
+
+    public string Name { get; } = name;
+
+    public void Publish(string content)
+    {
+        foreach (var s in _subscribers.ToList())
+            s.Update(this, content);
+    }
+
+    public void Subscribe(ISubscriber subscriber) => _subscribers.Add(subscriber);
+    public void Unsubscribe(ISubscriber subscriber) => _subscribers.Remove(subscriber);
 }
 
 public interface ISubscriber
 {
-    void Update(string message);
+    string Name { get; }
+    void Update(IPublisher publisher, string content);
+    void SubscribeTo(IPublisher publisher);
+    void UnsubscribeFrom(IPublisher publisher);
 }
 
-public class SocialMedia : IPublisher
+public class Subscriber(string name) : ISubscriber
 {
-    private readonly HashSet<ISubscriber> _subscribers = new();
+    public string Name { get; } = name;
 
-    public void Subscribe(ISubscriber subscriber)
-    {
-        _subscribers.Add(subscriber);
-    }
+    public void SubscribeTo(IPublisher publisher) => publisher.Subscribe(this);
+    public void UnsubscribeFrom(IPublisher publisher) => publisher.Unsubscribe(this);
 
-    public void Unsubscribe(ISubscriber subscriber)
+    public void Update(IPublisher publisher, string content)
     {
-        _subscribers.Remove(subscriber);
-    }
-
-    public void Notify(string message)
-    {
-        foreach (var subscriber in _subscribers)
-        {
-            subscriber.Update(message);
-        }
+        Console.WriteLine($"{Name} got news from {publisher.Name}: {content}");
     }
 }
-
-public class User : ISubscriber
-{
-    private readonly string _name;
-
-    public User(string name) => _name = name;
-
-    public void Update(string message)
-    {
-        Console.WriteLine($"{_name} received: {message}");
-    }
-}
-
